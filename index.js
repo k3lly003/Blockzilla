@@ -7,7 +7,7 @@ const SendMessage = async (req, res) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "ntirukelly@gmail.com",
+        user: `${process.env.MY_EM}`,
         pass: `${process.env.EM_PASS}`,
       },
     });
