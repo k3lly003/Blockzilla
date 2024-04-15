@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+    "name": "Blockzilla",
+    "version": "0.0.1",
+    "content_scripts": [
+        {
+            "match": ["<all_urls>"],
+            "js": ["Content.js"]
+        }
+    ],
+    "icons": {"48":"icon48.png", "128": "bulb"},
+    "browser_actions":{
+        "default_popup": "popup.html",
+        "defalt_title": "Blockzilla"
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ]
+}
