@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Skills Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+        }
+
+        .container {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                padding: 2rem;
+            }
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .title {
+                font-size: 1.875rem;
+            }
+        }
+
+        .chapter {
+            color: #4b5563;
+            margin-bottom: 1rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 0.75rem;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background: #4f46e5;
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.3s ease;
+            width: 0;
+        }
+
+        .progress-text {
+            font-size: 0.875rem;
+            color: #4b5563;
+            text-align: right;
+        }
+
+        .question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        @media (min-width: 768px) {
+            .question {
+                font-size: 1.5rem;
+            }
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-btn {
+            width: 100%;
+            text-align: left;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #e5e7eb;
+            background: #f9fafb;
+            color: #1f2937;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background: #f3f4f6;
+        }
+
+        .option-btn.selected {
+            background: #eef2ff;
+            border-color: #4f46e5;
+        }
+
+        .option-btn.correct {
+            background: #f0fdf4;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .option-btn.incorrect {
+            background: #fef2f2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .icon-check {
+            color: #16a34a;
+        }
+
+        .icon-x {
+            color: #dc2626;
+        }
+
+        .explanation {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid;
+        }
+
+        .explanation.correct {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+        }
+
+        .explanation.info {
+            background: #eff6ff;
+            border-color: #bfdbfe;
+        }
+
+        .explanation-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .explanation-text {
+            color: #374151;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
+            background: #4f46e5;
+            color: white;
+            font-family: inherit;
+        }
+
+        .btn:hover {
+            background: #4338ca;
+        }
+
+        .score-display {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .score-label {
+            color: #4b5563;
+        }
+
+        .score-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .result-container {
+            max-width: 32rem;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .result-container {
+                padding: 3rem;
+            }
+        }
+
+        .result-icon {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .result-icon.passed {
+            background: #dcfce7;
+        }
+
+        .result-icon.failed {
+            background: #fed7aa;
+        }
+
+        .result-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .result-score {
+            font-size: 1.25rem;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .result-score .highlight {
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .result-percentage {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-message {
+            color: #4b5563;
+            margin-bottom: 2rem;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<!-- Quiz Screen -->
+<div id="quizScreen" class="container">
+    <div class="card">
+        <h1 class="title">Communication Skills Quiz</h1>
+        <p class="chapter" id="chapterName"></p>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <p class="progress-text" id="progressText"></p>
+    </div>
+
+    <div class="card">
+        <h2 class="question" id="question"></h2>
+        <div class="options" id="options"></div>
+        <div id="explanationContainer"></div>
+        <button id="nextBtn" class="btn hidden"></button>
+    </div>
+
+    <div class="card">
+        <div class="score-display">
+            <span class="score-label">Current Score:</span>
+            <span class="score-value" id="currentScore">0 / 0</span>
+        </div>
+    </div>
+</div>
+
+<!-- Result Screen -->
+<div id="resultScreen" class="container hidden">
+    <div class="card result-container">
+        <div id="resultIcon" class="result-icon"></div>
+        <h2 class="result-title" id="resultTitle"></h2>
+        <p class="result-score" id="resultScore"></p>
+        <div class="result-percentage" id="resultPercentage"></div>
+        <p class="result-message" id="resultMessage"></p>
+        <button id="restartBtn" class="btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+            </svg>
+            Restart Quiz
+        </button>
+    </div>
+</div>
+
+<script>
+    // Questions Data
+    const questions = [
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Communication is defined as a process where the sender encodes a message, transmits it through a channel to a receiver who decodes and gives:",
+            options: ["Response", "Feedback", "Reply", "Reaction"],
+            correct: 1,
+            explanation: "Feedback is the technical term for the receiver's response that completes the communication cycle."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Which of the following is NOT one of the main aspects of communication?",
+            options: ["Source (sender)", "Content (message)", "Noise", "Imagination"],
+            correct: 3,
+            explanation: "The main aspects are: source, content, media, destination, and feedback. Imagination is not a required aspect."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "According to the document, communication can be described as:",
+            options: ["The heart of business", "The life blood of business", "The soul of business", "The brain of business"],
+            correct: 1,
+            explanation: "Communication is described as the life blood of business, essential for its survival and development."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Which communication objective involves giving personal opinions rather than factual information?",
+            options: ["To inform", "To advise", "To order", "To educate"],
+            correct: 1,
+            explanation: "Advice is subjective and involves personal opinions, while information is factual and objective."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "How many stages are there in the communication cycle?",
+            options: ["5", "6", "7", "8"],
+            correct: 2,
+            explanation: "There are 7 stages: information definition, encoding, sending, receiving, decoding, feedback, and repetition."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Which of the Six C's of communication emphasizes brevity without sacrificing clarity?",
+            options: ["Completeness", "Conciseness", "Consideration", "Correctness"],
+            correct: 1,
+            explanation: "Conciseness means being brief and to the point while maintaining clarity and completeness."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Semantic barriers in communication include all EXCEPT:",
+            options: ["Interpretation of words", "Bypassed instructions", "Denotation and connotation", "Physical noise"],
+            correct: 3,
+            explanation: "Physical noise is a physical barrier, not a semantic barrier. Semantic barriers relate to meaning of language."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "The 'You' attitude in communication means:",
+            options: ["Focusing on yourself", "Avoiding 'I' and 'we' to focus on the receiver", "Being informal", "Using second person only"],
+            correct: 1,
+            explanation: "The 'You' attitude emphasizes the receiver's perspective and shows greater respect and consideration."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Which element of communication refers to factors that prevent proper information exchange?",
+            options: ["Distortion", "Noise", "Channel", "Media"],
+            correct: 1,
+            explanation: "Noise refers to any factors preventing proper exchange of information from sources other than sender or receiver."
+        },
+        {
+            chapter: "Chapter 1: Introduction to Communication",
+            question: "Morale in communication stands for:",
+            options: ["Physical health", "Mental health", "Emotional health", "Social health"],
+            correct: 1,
+            explanation: "Morale stands for mental health and represents qualities like courage, confidence, and resolution."
+        },
+        {
+            chapter: "Chapter 2: Oral Communication",
+            question: "According to the document, an ideal speech duration is approximately:",
+            options: ["10 minutes", "20 minutes", "30 minutes", "40 minutes"],
+            correct: 1,
+            explanation: "An audience can typically maintain attention for about 20 minutes, so speeches should be tailored to this length."
+        },
+        {
+            chapter: "Chapter 2: Oral Communication",
+            question: "Which is NOT a characteristic of a good speech?",
+            options: ["Clear", "Like an informal talk", "Long and detailed", "Vivid and concrete"],
+            correct: 2,
+            explanation: "Good speeches should be brief (around 20 minutes), not long. Length can cause audience fatigue."
+        },
+        {
+            chapter: "Chapter 2: Oral Communication",
+            question: "A good speaker should:",
+            options: ["Speak as long as possible", "Show off their knowledge", "Take more time than allotted", "Have a sense of responsibility to the subject"],
+            correct: 3,
+            explanation: "Good speakers are responsible to their subject matter and respect time limits."
+        },
+        {
+            chapter: "Chapter 2: Oral Communication",
+            question: "The EARS technique in listening stands for:",
+            options: ["Evaluate, Analyze, Review, Synthesize", "Explore, Analyze, Review, Search", "Engage, Assess, Respond, Share", "Examine, Apply, Reflect, Summarize"],
+            correct: 1,
+            explanation: "EARS stands for Explore (anticipate), Analyze (message), Review (recap), Search (hidden meanings)."
+        },
+        {
+            chapter: "Chapter 2: Oral Communication",
+            question: "Listening is different from hearing because:",
+            options: ["Hearing is louder", "Listening requires effort and choice", "Hearing is voluntary", "Listening is automatic"],
+            correct: 1,
+            explanation: "Hearing is automatic while listening is active, requires effort, and involves choosing to pay attention."
+        }
+    ];
+
+    // State
+    let currentQuestion = 0;
+    let selectedAnswer = null;
+    let score = 0;
+    let answeredQuestions = [];
+
+    // Initialize
+    function init() {
+        displayQuestion();
+        document.getElementById('restartBtn').addEventListener('click', handleRestart);
+    }
+
+    // Display Question
+    function displayQuestion() {
+        const q = questions[currentQuestion];
+        const progress = ((currentQuestion + 1) / questions.length) * 100;
+
+        document.getElementById('chapterName').textContent = q.chapter;
+        document.getElementById('question').textContent = q.question;
+        document.getElementById('progressBar').style.width = progress + '%';
+        document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+        document.getElementById('currentScore').textContent = `${score} / ${answeredQuestions.length}`;
+
+        // Clear and create options
+        const optionsContainer = document.getElementById('options');
+        optionsContainer.innerHTML = '';
+
+        q.options.forEach((option, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerHTML = `<span>${option}</span>`;
+            btn.onclick = () => handleAnswerClick(index);
+            optionsContainer.appendChild(btn);
+        });
+
+        // Hide explanation and next button
+        document.getElementById('explanationContainer').innerHTML = '';
+        document.getElementById('nextBtn').classList.add('hidden');
+        selectedAnswer = null;
+    }
+
+    // Handle Answer Click
+    function handleAnswerClick(index) {
+        if (selectedAnswer !== null) return;
+
+        selectedAnswer = index;
+        const q = questions[currentQuestion];
+        const buttons = document.querySelectorAll('.option-btn');
+
+        // Update buttons
+        buttons.forEach((btn, i) => {
+            btn.disabled = true;
+            if (i === q.correct) {
+                btn.classList.add('correct');
+                btn.innerHTML += `<svg class="icon-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+            } else if (i === selectedAnswer) {
+                btn.classList.add('incorrect');
+                btn.innerHTML += `<svg class="icon-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+            }
+        });
+
+        // Update score
+        if (selectedAnswer === q.correct) {
+            score++;
+        }
+
+        // Show explanation
+        const expContainer = document.getElementById('explanationContainer');
+        expContainer.className = `explanation ${selectedAnswer === q.correct ? 'correct' : 'info'}`;
+        expContainer.innerHTML = `
+                <p class="explanation-title">${selectedAnswer === q.correct ? '✓ Correct!' : 'ℹ Explanation:'}</p>
+                <p class="explanation-text">${q.explanation}</p>
+            `;
+
+        // Show next button
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.classList.remove('hidden');
+        if (currentQuestion < questions.length - 1) {
+            nextBtn.innerHTML = `Next Question <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>`;
+        } else {
+            nextBtn.textContent = 'See Results';
+        }
+        nextBtn.onclick = handleNext;
+    }
+
+    // Handle Next
+    function handleNext() {
+        answeredQuestions.push(currentQuestion);
+
+        if (currentQuestion < questions.length - 1) {
+            currentQuestion++;
+            displayQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    // Show Results
+    function showResults() {
+        const percentage = ((score / questions.length) * 100).toFixed(1);
+        const passed = percentage >= 70;
+
+        document.getElementById('quizScreen').classList.add('hidden');
+        document.getElementById('resultScreen').classList.remove('hidden');
+
+        const iconContainer = document.getElementById('resultIcon');
+        iconContainer.className = `result-icon ${passed ? 'passed' : 'failed'}`;
+        iconContainer.innerHTML = passed
+            ? '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+            : '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+
+        document.getElementById('resultTitle').textContent = passed ? 'Congratulations!' : 'Keep Learning!';
+        document.getElementById('resultScore').innerHTML = `You scored <span class="highlight">${score}</span> out of <span style="font-weight: bold;">${questions.length}</span>`;
+        document.getElementById('resultPercentage').textContent = `${percentage}%`;
+        document.getElementById('resultMessage').textContent = passed
+            ? 'Excellent work! You have a strong understanding of communication skills.'
+            : 'Review the material and try again to improve your score.';
+    }
+
+    // Handle Restart
+    function handleRestart() {
+        currentQuestion = 0;
+        selectedAnswer = null;
+        score = 0;
+        answeredQuestions = [];
+
+        document.getElementById('resultScreen').classList.add('hidden');
+        document.getElementById('quizScreen').classList.remove('hidden');
+
+        displayQuestion();
+    }
+
+    // Start quiz
+    window.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
