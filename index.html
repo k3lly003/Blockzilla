@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Communication Skills exam preparation</title>
+    <title>Business Law Revision Quiz</title>
     <style>
         * {
             margin: 0;
@@ -12,966 +13,1549 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
-            padding: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            body {
-                padding: 2rem;
-            }
+            padding: 20px;
         }
 
         .container {
-            max-width: 56rem;
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        .card {
             background: white;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .card {
-                padding: 2rem;
-            }
-        }
-
-        .title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .title {
-                font-size: 1.875rem;
-            }
-        }
-
-        .chapter {
-            color: #4b5563;
-            margin-bottom: 1rem;
-        }
-
-        .progress-container {
-            width: 100%;
-            background: #e5e7eb;
-            border-radius: 9999px;
-            height: 0.75rem;
-            margin-bottom: 0.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
 
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .progress-container {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
         .progress-bar {
-            background: #4f46e5;
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
             height: 100%;
-            border-radius: 9999px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
             transition: width 0.3s ease;
-            width: 0;
         }
 
         .progress-text {
-            font-size: 0.875rem;
-            color: #4b5563;
-            text-align: right;
-        }
-
-        .question {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        @media (min-width: 768px) {
-            .question {
-                font-size: 1.5rem;
-            }
-        }
-
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .option-btn {
-            width: 100%;
-            text-align: left;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 2px solid #e5e7eb;
-            background: #f9fafb;
-            color: #1f2937;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 1rem;
-            font-family: inherit;
         }
 
-        .option-btn:hover:not(:disabled) {
-            background: #f3f4f6;
+        .quiz-content {
+            padding: 30px;
         }
 
-        .option-btn.selected {
-            background: #eef2ff;
-            border-color: #4f46e5;
+        .question-card {
+            margin-bottom: 30px;
         }
 
-        .option-btn.correct {
-            background: #f0fdf4;
-            border-color: #22c55e;
-            color: #166534;
-        }
-
-        .option-btn.incorrect {
-            background: #fef2f2;
-            border-color: #ef4444;
-            color: #991b1b;
-        }
-
-        .option-btn:disabled {
-            cursor: default;
-        }
-
-        .icon-check {
-            color: #16a34a;
-        }
-
-        .icon-x {
-            color: #dc2626;
-        }
-
-        .explanation {
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1.5rem;
-            border: 2px solid;
-        }
-
-        .explanation.correct {
-            background: #f0fdf4;
-            border-color: #bbf7d0;
-        }
-
-        .explanation.info {
-            background: #eff6ff;
-            border-color: #bfdbfe;
-        }
-
-        .explanation-title {
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-        }
-
-        .explanation-text {
-            color: #374151;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
+        .question-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            border: none;
-            font-size: 1rem;
-            background: #4f46e5;
+            margin-bottom: 15px;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            font-family: inherit;
-        }
-
-        .btn:hover {
-            background: #4338ca;
-        }
-
-        .score-display {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .score-label {
-            color: #4b5563;
-        }
-
-        .score-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4f46e5;
-        }
-
-        .result-container {
-            max-width: 32rem;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .result-container {
-                padding: 3rem;
-            }
-        }
-
-        .result-icon {
-            width: 6rem;
-            height: 6rem;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-        }
-
-        .result-icon.passed {
-            background: #dcfce7;
-        }
-
-        .result-icon.failed {
-            background: #fed7aa;
-        }
-
-        .result-title {
-            font-size: 1.875rem;
             font-weight: bold;
-            color: #1f2937;
-            margin-bottom: 1rem;
+            margin-right: 15px;
+            flex-shrink: 0;
         }
 
-        .result-score {
-            font-size: 1.25rem;
-            color: #4b5563;
-            margin-bottom: 1.5rem;
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.5;
         }
 
-        .result-score .highlight {
+        .question-note {
+            font-size: 13px;
+            color: #ff6b6b;
+            font-style: italic;
+            margin-top: 8px;
+            padding: 8px 12px;
+            background: #fff5f5;
+            border-left: 3px solid #ff6b6b;
+            border-radius: 4px;
+        }
+
+        .options {
+            margin-top: 20px;
+        }
+
+        .option {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+        }
+
+        .option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .option.selected {
+            background: #e7f3ff;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .option.correct::after {
+            content: '✓';
+            margin-left: auto;
+            color: #28a745;
             font-weight: bold;
-            color: #4f46e5;
+            font-size: 20px;
         }
 
-        .result-percentage {
-            font-size: 3rem;
+        .option.incorrect::after {
+            content: '✗';
+            margin-left: auto;
+            color: #dc3545;
             font-weight: bold;
-            color: #4f46e5;
-            margin-bottom: 0.5rem;
+            font-size: 20px;
         }
 
-        .result-message {
-            color: #4b5563;
-            margin-bottom: 2rem;
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            display: none;
         }
 
-        .hidden {
-            display: none !important;
+        .explanation.show {
+            display: block;
+        }
+
+        .explanation h4 {
+            color: #856404;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .explanation p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .results h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .result-details {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .result-item {
+            flex: 1;
+            min-width: 150px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item h3 {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .result-item p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .essay-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .essay-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .essay-question {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .essay-question h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .essay-question p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .essay-answer {
+            background: #fff9e6;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .essay-answer h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .essay-answer ul,
+        .essay-answer ol {
+            margin-left: 20px;
+            color: #666;
+        }
+
+        .essay-answer li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .quiz-content {
+                padding: 20px;
+            }
+
+            .question-text {
+                font-size: 16px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
-<!-- Quiz Screen -->
-<div id="quizScreen" class="container">
-    <div class="card">
-        <h1 class="title">Communication Skills Quiz</h1>
-        <p class="chapter" id="chapterName"></p>
+    <div class="container">
+        <div class="header">
+            <h1>📚 Business Law Revision Quiz</h1>
+            <p>Company Law, Liquidation & Insolvency in Rwanda</p>
+        </div>
+
         <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text">
+                <span id="questionCounter">Question 0 of 0</span>
+                <span id="scoreCounter">Score: 0/0</span>
+            </div>
         </div>
-        <p class="progress-text" id="progressText"></p>
-    </div>
 
-    <div class="card">
-        <h2 class="question" id="question"></h2>
-        <div class="options" id="options"></div>
-        <div id="explanationContainer"></div>
-        <button id="nextBtn" class="btn hidden"></button>
-    </div>
+        <div class="quiz-content" id="quizContent">
+            <!-- Quiz questions will be inserted here -->
+        </div>
 
-    <div class="card">
-        <div class="score-display">
-            <span class="score-label">Current Score:</span>
-            <span class="score-value" id="currentScore">0 / 0</span>
+        <div class="quiz-content">
+            <div class="button-container">
+                <button class="btn btn-primary" id="submitBtn">Mark Quiz</button>
+                <button class="btn btn-secondary" id="resetBtn">Reset</button>
+            </div>
+
+            <div class="results" id="results" style="display: none;">
+                <h2>Your Results</h2>
+                <div class="score-circle" id="scoreCircle">0%</div>
+                <div class="result-details">
+                    <div class="result-item">
+                        <h3>Correct Answers</h3>
+                        <p id="correctCount">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Total Questions</h3>
+                        <p id="totalQuestions">0</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Attempted</h3>
+                        <p id="attemptedCount">0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="essay-section" id="essaySection" style="display: none;">
+            <h2>📝 Written Answer Questions</h2>
+            <!-- Essay questions will be inserted here -->
         </div>
     </div>
-</div>
 
-<!-- Result Screen -->
-<div id="resultScreen" class="container hidden">
-    <div class="card result-container">
-        <div id="resultIcon" class="result-icon"></div>
-        <h2 class="result-title" id="resultTitle"></h2>
-        <p class="result-score" id="resultScore"></p>
-        <div class="result-percentage" id="resultPercentage"></div>
-        <p class="result-message" id="resultMessage"></p>
-        <button id="restartBtn" class="btn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-            </svg>
-            Restart Quiz
-        </button>
-    </div>
-</div>
+    <script>
+        const quizData = [
+            {
+                question: "What is a business according to the documents?",
+                options: [
+                    "A legally recognized organization designed to provide goods and/or services to consumers",
+                    "An association formed to earn profit that will increase the wealth of its owners",
+                    "An organization predominant in capitalist economies",
+                    "All of the above"
+                ],
+                correct: [3],
+                explanation: "A business is defined as a legally recognized organization designed to provide goods and/or services to consumers, predominant in capitalist economies, formed to earn profit that will increase the wealth of its owners."
+            },
+            {
+                question: "Which of the following are stakeholders of a business? (Select all that apply)",
+                options: [
+                    "Owners",
+                    "Customers",
+                    "Competitors",
+                    "Suppliers",
+                    "Employees",
+                    "Collaborators"
+                ],
+                correct: [0, 1, 2, 3, 4, 5],
+                multipleAnswers: true,
+                explanation: "Stakeholders of a business include owners, customers, collaborators, competitors, employees, and suppliers."
+            },
+            {
+                question: "What are the business objectives mentioned in the documents? (Select all that apply)",
+                options: [
+                    "Profitability",
+                    "Survival",
+                    "Prestige",
+                    "Growth",
+                    "Social responsibility"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "The five business objectives mentioned are profitability, survival, prestige, growth, and social responsibility."
+            },
+            {
+                question: "Michael Porter's five forces of competition include which of the following? (Select all that apply)",
+                options: [
+                    "Rivalry among existing enterprises",
+                    "Relative power of customers",
+                    "Relative power of suppliers",
+                    "Threat of new entrants",
+                    "Threat of substitutes"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "Porter's five forces include rivalry among existing enterprises, relative power of customers and suppliers, threat of new entrants, and threat of substitutes."
+            },
+            {
+                question: "What is the main characteristic of a sole proprietorship regarding liability?",
+                options: [
+                    "Limited liability",
+                    "Unlimited liability",
+                    "Shared liability",
+                    "No liability"
+                ],
+                correct: [1],
+                explanation: "A sole proprietor has unlimited liability, meaning personal property can be sold to clear business debts if the business cannot pay its liabilities."
+            },
+            {
+                question: "What are the features of unincorporated businesses? (Select all that apply)",
+                options: [
+                    "They do not have separate legal entity from their owners",
+                    "They do not have separate rights and obligations from their owners",
+                    "According to law, such organizations are one and the same as the owner",
+                    "They include sole proprietors and partnerships"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Unincorporated businesses have no separate legal personality and include sole proprietors and partnerships."
+            },
+            {
+                question: "According to the Partnership Act, what is the maximum number of partners in a partnership?",
+                options: [
+                    "10 members",
+                    "20 members",
+                    "50 members",
+                    "100 members"
+                ],
+                correct: [1],
+                explanation: "A partnership is illegal where it contains more than 20 members."
+            },
+            {
+                question: "What is mutual agency in a partnership?",
+                options: [
+                    "Each partner works independently",
+                    "Each partner is an agent of the partnership and their actions bind other partners",
+                    "Only senior partners can make decisions",
+                    "Partners share profits equally"
+                ],
+                correct: [1],
+                explanation: "Mutual agency means each partner is an agent of the partnership and actions within authority bind all partners."
+            },
+            {
+                question: "What are types of partnerships by liability? (Select all that apply)",
+                options: [
+                    "General partnerships",
+                    "Limited partnerships",
+                    "Active partnerships",
+                    "Dormant partnerships"
+                ],
+                correct: [0, 1],
+                multipleAnswers: true,
+                explanation: "By liability, partnerships are classified as general partnerships and limited partnerships."
+            },
+            {
+                question: "What is a company according to Rwanda's Company Act?",
+                options: [
+                    "A corporate body composed of one or more persons for profit",
+                    "Only associations of many persons",
+                    "Only organizations with shareholders",
+                    "Only public entities"
+                ],
+                correct: [0],
+                explanation: "A company is defined as a corporate body composed of one or more persons for profit."
+            },
+            {
+                question: "What are the essential requirements of a company? (Select all that apply)",
+                options: [
+                    "A name",
+                    "An address",
+                    "A business occupation",
+                    "One or more shares",
+                    "One or more directors"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "Essential requirements include name, address, business occupation, shares, and directors."
+            },
+            {
+                question: "What is the minimum capital requirement for a public limited company in Rwanda?",
+                options: [
+                    "10,000,000 FRW",
+                    "50,000,000 FRW",
+                    "100,000,000 FRW",
+                    "200,000,000 FRW"
+                ],
+                correct: [2],
+                explanation: "The minimum capital requirement to set up a public limited company is 100,000,000 FRW."
+            },
+            {
+                question: "What are characteristics of a private company? (Select all that apply)",
+                options: [
+                    "Restricting the right to transfer its shares",
+                    "Limiting the number of shareholders to one hundred",
+                    "Prohibiting any invitation to the public to subscribe for shares",
+                    "Can freely issue shares to the public"
+                ],
+                correct: [0, 1, 2],
+                multipleAnswers: true,
+                explanation: "A private company restricts transfer of shares, limits shareholders to 100 (excluding employees), and cannot invite the public to subscribe for shares."
+            },
+            {
+                question: "What is the doctrine of Ultra Vires?",
+                options: [
+                    "Actions within company powers",
+                    "Actions beyond the powers of the company that are void",
+                    "Actions approved by shareholders",
+                    "Legal company activities"
+                ],
+                correct: [1],
+                explanation: "Ultra vires refers to acts beyond the legal powers of the company and therefore void."
+            },
+            {
+                question: "What documents are required for company formation? (Select all that apply)",
+                options: [
+                    "Memorandum of Association",
+                    "Articles of Association",
+                    "Prospectus",
+                    "Certificate of Incorporation"
+                ],
+                correct: [0, 1, 2],
+                multipleAnswers: true,
+                explanation: "Key documents include memorandum and articles of association and, for public offers, a prospectus."
+            },
+            {
+                question: "What is liquidation?",
+                options: [
+                    "The process of growing a company",
+                    "The legal process of selling company assets to cover outstanding liabilities and close the business",
+                    "The process of merging companies",
+                    "The process of hiring employees"
+                ],
+                correct: [1],
+                explanation: "Liquidation is the legal process of selling assets to pay liabilities and close the business."
+            },
+            {
+                question: "What is the difference between insolvency and liquidation?",
+                options: [
+                    "They are the same thing",
+                    "Insolvency is a declaration of financial state; liquidation is the process of closing the business",
+                    "Liquidation happens before insolvency",
+                    "Only profitable companies can be liquidated"
+                ],
+                correct: [1],
+                explanation: "Insolvency is the financial state of inability to pay debts, while liquidation is the process of winding up the company."
+            },
+            {
+                question: "What are types of liquidation? (Select all that apply)",
+                options: [
+                    "Compulsory liquidation",
+                    "Voluntary liquidation",
+                    "Members' voluntary winding up",
+                    "Creditors' voluntary winding up"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Types include compulsory liquidation and voluntary liquidation, which can be members’ or creditors’ winding up."
+            },
+            {
+                question: "What tests determine if a company is insolvent? (Select all that apply)",
+                options: [
+                    "Cash flow test",
+                    "Balance sheet test",
+                    "Profitability test",
+                    "Market value test"
+                ],
+                correct: [0, 1],
+                multipleAnswers: true,
+                explanation: "Insolvency is assessed using the cash flow test and the balance sheet test."
+            },
+            {
+                question: "Who can initiate compulsory liquidation proceedings?",
+                options: [
+                    "Only creditors",
+                    "Only shareholders",
+                    "Creditors or the Registrar General",
+                    "Only the court"
+                ],
+                correct: [2],
+                explanation: "Compulsory liquidation can be initiated by a creditor or the Registrar General."
+            },
+            {
+                question: "What are grounds for compulsory winding up? (Select all that apply)",
+                options: [
+                    "The company is unable to pay its debts",
+                    "Special resolution by shareholders",
+                    "Company has not commenced business within a year of incorporation",
+                    "It is just and equitable to wind up the company",
+                    "Number of members falls below statutory minimum"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "Grounds include inability to pay debts, special resolution, failure to commence or resumption of business, reduction below minimum membership, and just and equitable grounds."
+            },
+            {
+                question: "What happens to directors' powers after a winding-up order is made?",
+                options: [
+                    "They retain all powers",
+                    "Their powers cease unless sanctioned by the court",
+                    "They gain more powers",
+                    "Nothing changes"
+                ],
+                correct: [1],
+                explanation: "After a winding-up order, directors’ powers generally cease unless the court permits otherwise."
+            },
+            {
+                question: "What are the duties of a liquidator? (Select all that apply)",
+                options: [
+                    "To realize and distribute the company's estate",
+                    "To take custody and control of the company's estate",
+                    "To keep proper accounting records",
+                    "To retain records for at least 10 years after bankruptcy ends"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Liquidators realize and distribute assets, take custody of the estate, keep proper records, and retain records for a set period."
+            },
+            {
+                question: "Within how many working days must a liquidator give public notice after commencement of duties?",
+                options: [
+                    "2 working days",
+                    "5 working days",
+                    "10 working days",
+                    "20 working days"
+                ],
+                correct: [1],
+                explanation: "A liquidator must give public notice within five working days of commencing duties."
+            },
+            {
+                question: "What are alternatives to winding up? (Select all that apply)",
+                options: [
+                    "Reconstruction",
+                    "Amalgamation",
+                    "Mergers and Acquisitions",
+                    "Scheme of arrangement"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Alternatives include reconstruction, amalgamation, mergers and acquisitions, and schemes of arrangement."
+            },
+            {
+                question: "What is the corporate veil?",
+                options: [
+                    "A legal concept that separates company actions from shareholder actions",
+                    "A tax document",
+                    "A company registration form",
+                    "A type of share certificate"
+                ],
+                correct: [0],
+                explanation: "The corporate veil separates the company’s legal personality from that of its shareholders."
+            },
+            {
+                question: "When can the corporate veil be pierced? (Select all that apply)",
+                options: [
+                    "Fraud and misrepresentation",
+                    "Breach of fiduciary duty",
+                    "Illegal use of corporate structure",
+                    "Non-compliance with regulations"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "The veil may be pierced in cases of fraud, breach of duty, illegal use of the company, or serious non‑compliance."
+            },
+            {
+                question: "What is bankruptcy?",
+                options: [
+                    "A process only for companies",
+                    "A legal process where individuals unable to repay debts seek relief",
+                    "A tax filing process",
+                    "A merger process"
+                ],
+                correct: [1],
+                explanation: "Bankruptcy is a legal process allowing individuals or businesses unable to repay debts to obtain relief."
+            },
+            {
+                question: "Who can apply for a bankruptcy order? (Select all that apply)",
+                options: [
+                    "One or more creditors",
+                    "The individual himself/herself",
+                    "The supervisor of an arrangement proposed by the individual",
+                    "Any family member"
+                ],
+                correct: [0, 1, 2],
+                multipleAnswers: true,
+                explanation: "An order can be sought by creditors, the debtor, or the supervisor of an arrangement."
+            },
+            {
+                question: "How long does bankruptcy typically last before automatic discharge?",
+                options: [
+                    "6 months",
+                    "1 year",
+                    "2 years",
+                    "5 years"
+                ],
+                correct: [2],
+                explanation: "A bankrupt is typically discharged after two years unless the court extends the period."
+            },
+            {
+                question: "What offences can be committed during insolvency proceedings? (Select all that apply)",
+                options: [
+                    "Absconding and appropriating assets",
+                    "Obtaining credit without disclosing bankruptcy",
+                    "Failure to keep proper accounts",
+                    "Failure to submit statement of affairs",
+                    "Misappropriation of debtor's property"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "Offences include hiding or appropriating assets, obtaining undisclosed credit, failing to keep accounts, failing to submit statements, and misappropriating property."
+            },
+            // Business environment – internal / external
+            {
+                question: "Which of the following are elements of the external business environment? (Select all that apply)",
+                options: [
+                    "Competitors",
+                    "Legal and political factors",
+                    "Social and cultural factors",
+                    "Economic conditions",
+                    "The entrepreneur’s personal savings"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "The external environment includes competitors and the wider legal, political, social and economic context surrounding the firm, while the owner’s personal savings are an internal factor."
+            },
 
-<script>
-    // Questions Data
-    const questions = [
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Communication is defined as a process where the sender encodes a message, transmits it through a channel to a receiver who decodes and gives:",
-            options: ["Response", "Feedback", "Reply", "Reaction"],
-            correct: 1,
-            explanation: "Feedback is the technical term for the receiver's response that completes the communication cycle."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Which of the following is NOT one of the main aspects of communication?",
-            options: ["Source (sender)", "Content (message)", "Noise", "Imagination"],
-            correct: 3,
-            explanation: "The main aspects are: source, content, media, destination, and feedback. Imagination is not a required aspect."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "According to the document, communication can be described as:",
-            options: ["The heart of business", "The life blood of business", "The soul of business", "The brain of business"],
-            correct: 1,
-            explanation: "Communication is described as the life blood of business, essential for its survival and development."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Which communication objective involves giving personal opinions rather than factual information?",
-            options: ["To inform", "To advise", "To order", "To educate"],
-            correct: 1,
-            explanation: "Advice is subjective and involves personal opinions, while information is factual and objective."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "How many stages are there in the communication cycle?",
-            options: ["5", "6", "7", "8"],
-            correct: 2,
-            explanation: "There are 7 stages: information definition, encoding, sending, receiving, decoding, feedback, and repetition."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Which of the Six C's of communication emphasizes brevity without sacrificing clarity?",
-            options: ["Completeness", "Conciseness", "Consideration", "Correctness"],
-            correct: 1,
-            explanation: "Conciseness means being brief and to the point while maintaining clarity and completeness."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Semantic barriers in communication include all EXCEPT:",
-            options: ["Interpretation of words", "Bypassed instructions", "Denotation and connotation", "Physical noise"],
-            correct: 3,
-            explanation: "Physical noise is a physical barrier, not a semantic barrier. Semantic barriers relate to meaning of language."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "The 'You' attitude in communication means:",
-            options: ["Focusing on yourself", "Avoiding 'I' and 'we' to focus on the receiver", "Being informal", "Using second person only"],
-            correct: 1,
-            explanation: "The 'You' attitude emphasizes the receiver's perspective and shows greater respect and consideration."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Which element of communication refers to factors that prevent proper information exchange?",
-            options: ["Distortion", "Noise", "Channel", "Media"],
-            correct: 1,
-            explanation: "Noise refers to any factors preventing proper exchange of information from sources other than sender or receiver."
-        },
-        {
-            chapter: "Chapter 1: Introduction to Communication",
-            question: "Morale in communication stands for:",
-            options: ["Physical health", "Mental health", "Emotional health", "Social health"],
-            correct: 1,
-            explanation: "Morale stands for mental health and represents qualities like courage, confidence, and resolution."
-        },
+            // Business environment – SLEPT
+            {
+                question: "The acronym SLEPT, used in business environment analysis, stands for which of the following?",
+                options: [
+                    "Social, Legal, Economic, Political, Technological",
+                    "Social, Local, Environmental, Political, Tax",
+                    "Strategic, Legal, Ethical, Political, Technological",
+                    "Social, Legal, Environmental, Private, Technological"
+                ],
+                correct: [0],
+                explanation: "SLEPT stands for Social, Legal, Economic, Political and Technological factors considered when scanning the external environment."
+            },
 
-        // CHAPTER 2: ORAL COMMUNICATION
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "According to the document, an ideal speech duration is approximately:",
-            options: ["10 minutes", "20 minutes", "30 minutes", "40 minutes"],
-            correct: 1,
-            explanation: "An audience can typically maintain attention for about 20 minutes, so speeches should be tailored to this length."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "Which is NOT a characteristic of a good speech?",
-            options: ["Clear", "Like an informal talk", "Long and detailed", "Vivid and concrete"],
-            correct: 2,
-            explanation: "Good speeches should be brief (around 20 minutes), not long. Length can cause audience fatigue."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "A good speaker should:",
-            options: ["Speak as long as possible", "Show off their knowledge", "Take more time than allotted", "Have a sense of responsibility to the subject"],
-            correct: 3,
-            explanation: "Good speakers are responsible to their subject matter and respect time limits."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "The EARS technique in listening stands for:",
-            options: ["Evaluate, Analyze, Review, Synthesize", "Explore, Analyze, Review, Search", "Engage, Assess, Respond, Share", "Examine, Apply, Reflect, Summarize"],
-            correct: 1,
-            explanation: "EARS stands for Explore (anticipate), Analyze (message), Review (recap), Search (hidden meanings)."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "Listening is different from hearing because:",
-            options: ["Hearing is louder", "Listening requires effort and choice", "Hearing is voluntary", "Listening is automatic"],
-            correct: 1,
-            explanation: "Hearing is automatic while listening is active, requires effort, and involves choosing to pay attention."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "Which type of discussion question tries to discover if something should or should not be done?",
-            options: ["Question of fact", "Question of value", "Question of policy", "Question of ethics"],
-            correct: 2,
-            explanation: "Questions of policy attempt to determine if an action should or should not be taken."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "In an interview, the candidate should NOT:",
-            options: ["Arrive 10-15 minutes early", "Shake hands unless offered", "Sit before being asked", "Pay attention to questions"],
-            correct: 2,
-            explanation: "Candidates should not sit until asked to do so, as this shows respect and proper etiquette."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "Which listening category is practiced by counselors and good friends?",
-            options: ["Appreciative listening", "Discriminative listening", "Comprehensive listening", "Therapeutic listening"],
-            correct: 3,
-            explanation: "Therapeutic listening encourages people to talk freely without fear, practiced by counselors and supportive friends."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "A panel discussion typically involves how many members?",
-            options: ["2-4 members", "4-8 members", "8-12 members", "12-16 members"],
-            correct: 1,
-            explanation: "Panel discussions typically involve 4-8 members for effective interaction and time management."
-        },
-        {
-            chapter: "Chapter 2: Oral Communication",
-            question: "When conducting a meeting, the chairman should:",
-            options: ["Start late to allow latecomers", "Take sides in conflicts", "Begin with negative issues", "Remain impartial"],
-            correct: 3,
-            explanation: "Chairmen must remain impartial to maintain fairness and control during conflicts."
-        },
+            // Company documents – memorandum clauses
+            {
+                question: "Which clauses are normally found in a company’s Memorandum of Association? (Select all that apply)",
+                options: [
+                    "Name clause",
+                    "Registered office clause",
+                    "Objects clause",
+                    "Capital clause",
+                    "Liability clause"
+                ],
+                correct: [0, 1, 2, 3, 4],
+                multipleAnswers: true,
+                explanation: "The memorandum commonly contains clauses on the company name, registered office, objects, share capital and the basis of members’ liability."
+            },
 
-        // CHAPTER 3: WRITING SKILLS
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "A business letter with salutation 'Dear Sir' should end with:",
-            options: ["Yours sincerely", "Yours faithfully", "Yours truly", "Regards"],
-            correct: 1,
-            explanation: "Formal letters with 'Dear Sir/Madam' close with 'Yours faithfully'."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "The 'cc' notation in a letter stands for:",
-            options: ["Certified copy", "Carbon copies", "Company correspondence", "Circular communication"],
-            correct: 1,
-            explanation: "CC stands for carbon copies, showing who else received the same letter."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "A memo is primarily used for:",
-            options: ["External communication", "Internal communication", "International communication", "Legal communication"],
-            correct: 1,
-            explanation: "Memos are used for internal communication within an organization."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "A good summary should be approximately what fraction of the original passage?",
-            options: ["1/2", "1/3", "1/4", "1/5"],
-            correct: 1,
-            explanation: "A summary or précis should be about one-third the length of the original passage."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "Which section of a report interprets the facts presented in findings?",
-            options: ["Background", "Findings", "Conclusions", "Recommendations"],
-            correct: 2,
-            explanation: "Conclusions interpret the facts and observations from the findings section."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "An informative report differs from an interpretive report in that it:",
-            options: ["Makes recommendations", "Analyzes data", "Only presents facts", "Draws conclusions"],
-            correct: 2,
-            explanation: "Informative reports only present facts, while interpretive reports analyze, conclude, and recommend."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "When writing a summary, you should:",
-            options: ["Copy important sentences", "Use first person", "Use your own language", "Include all examples"],
-            correct: 2,
-            explanation: "Summaries should be written in your own words, not copied from the original text."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "The essay writing process should begin with:",
-            options: ["Writing the introduction", "Defining the scope", "Preparing the conclusion", "Revising the draft"],
-            correct: 1,
-            explanation: "Before writing, you must define the scope of the essay to determine what to cover."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "Business letters having 'Dear Mr. John' should end with:",
-            options: ["Yours faithfully", "Yours sincerely", "Yours truly", "Yours respectfully"],
-            correct: 1,
-            explanation: "Less formal letters using names close with 'Yours sincerely'."
-        },
-        {
-            chapter: "Chapter 3: Writing Skills",
-            question: "Which is NOT a quality of a good summary?",
-            options: ["Concise", "Clear", "Coherent", "Comprehensive"],
-            correct: 3,
-            explanation: "Summaries should be concise, clear, and coherent, but not comprehensive (which implies full detail)."
-        },
+            // Company documents – articles role
+            {
+                question: "What is the main function of the Articles of Association?",
+                options: [
+                    "To regulate relations between the company and third parties",
+                    "To regulate the internal management of the company and relations with members",
+                    "To authorise the company’s share capital",
+                    "To grant a tax exemption to the company"
+                ],
+                correct: [1],
+                explanation: "The articles of association form the internal constitution, setting rules for management and relations between the company and its members."
+            },
 
-        // CHAPTER 4: VISUAL COMMUNICATION
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "A pie chart is best used to show:",
-            options: ["Trends over time", "Relative size of components of a whole", "Relationship between two variables", "Frequency distribution"],
-            correct: 1,
-            explanation: "Pie charts show the relative size of separate components that make up a whole (100%)."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "When constructing a bar chart, the longer the bar:",
-            options: ["The smaller the figure", "The larger the figure", "The less important the data", "The more uncertain the data"],
-            correct: 1,
-            explanation: "In bar charts, longer bars represent larger numerical values."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "Graphs are valuable for presenting data on:",
-            options: ["Static comparisons", "Proportions only", "Relationships between two constantly changing elements", "Categories only"],
-            correct: 2,
-            explanation: "Graphs show relationships between two variables that change continuously."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "When drawing a graph, you should use:",
-            options: ["Plain paper", "Graph paper", "Colored paper", "Lined paper"],
-            correct: 1,
-            explanation: "Graph paper should be used for accuracy in plotting points and maintaining scale."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "Visual communication is important because it:",
-            options: ["Replaces verbal communication", "Only works for educated audiences", "Simplifies complex information", "Is always more accurate"],
-            correct: 2,
-            explanation: "Visual aids simplify complex information, making it easier to understand and remember."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "The saying 'A picture is worth a thousand words' emphasizes:",
-            options: ["Pictures are always better", "Visual communication is efficient", "Words are unnecessary", "Pictures are universal"],
-            correct: 1,
-            explanation: "This saying emphasizes that visual communication can convey complex information quickly and effectively."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "Bar charts should have bars arranged in:",
-            options: ["Random order", "Alphabetical order always", "Chronological order if showing time data", "Size order always"],
-            correct: 2,
-            explanation: "If bars show statistics over time, they should be in chronological order."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "Each axis of a graph should be:",
-            options: ["Left unlabeled", "Labeled with information and scale", "Marked irregularly", "In different colors"],
-            correct: 1,
-            explanation: "Both axes must be clearly labeled showing what information they represent and the scale used."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "Visual aids are particularly useful for:",
-            options: ["Replacing all text", "Making presentations longer", "Enhancing retention", "Confusing audiences"],
-            correct: 2,
-            explanation: "Visual aids enhance information retention and make presentations more engaging and memorable."
-        },
-        {
-            chapter: "Chapter 4: Visual Communication",
-            question: "A chart should always include:",
-            options: ["Only the data", "A clear heading", "Colorful graphics", "Multiple fonts"],
-            correct: 1,
-            explanation: "Charts should have clear headings to immediately convey what information they present."
-        },
+            // Share and debt capital – types of share capital
+            {
+                question: "Which of the following are types of share capital recognised in company law? (Select all that apply)",
+                options: [
+                    "Authorised (nominal) capital",
+                    "Issued (subscribed) capital",
+                    "Paid‑up capital",
+                    "Reserve capital",
+                    "Working capital"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Share capital is commonly classified into authorised, issued, paid‑up and reserve capital; working capital is a finance concept, not a type of share capital."
+            },
 
-        // CHAPTER 5: NON-VERBAL COMMUNICATION
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Non-verbal communication includes all EXCEPT:",
-            options: ["Body language", "Vocal tone", "Written words", "Facial expressions"],
-            correct: 2,
-            explanation: "Written words are verbal communication. Non-verbal includes body language, tone, expressions, etc."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Kinesics refers to:",
-            options: ["Use of space", "Body language", "Vocal tone", "Time management"],
-            correct: 1,
-            explanation: "Kinesics is the study of body language, including posture, gestures, and facial expressions."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Proxemics is the study of:",
-            options: ["Body movements", "Space and distance", "Vocal qualities", "Time usage"],
-            correct: 1,
-            explanation: "Proxemics studies how people use space and distance in communication."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "In warmer countries, people tend to:",
-            options: ["Keep greater distance", "Move nearer to acquaintances", "Avoid eye contact", "Use less gestures"],
-            correct: 1,
-            explanation: "In warm countries, people typically stand closer to show friendliness, while cooler countries maintain more space."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "A person with crossed arms held tightly indicates:",
-            options: ["Openness", "Defensive mood", "Confidence", "Relaxation"],
-            correct: 1,
-            explanation: "Crossed arms held tightly typically signal a defensive or closed-off mood."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "The bigger the office or desk, the more it suggests:",
-            options: ["Wastefulness", "Poor organization", "Higher status", "Lower efficiency"],
-            correct: 2,
-            explanation: "Larger offices and desks are status symbols indicating higher organizational position."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Much of body language is:",
-            options: ["Deliberate", "Involuntary or unconscious", "Learned in school", "Universal across cultures"],
-            correct: 1,
-            explanation: "Much body language is involuntary or unconscious, though we can learn to control some aspects."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Vocal tone can:",
-            options: ["Only reinforce words", "Change a reprimand into a joke", "Never contradict words", "Only work with gestures"],
-            correct: 1,
-            explanation: "Intonation and vocal tone can completely change meaning, even turning reprimands into jokes."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Which sense is NOT mentioned as contributing to non-verbal communication?",
-            options: ["Sight", "Touch", "Taste", "Hearing"],
-            correct: 2,
-            explanation: "The document mentions sight, hearing, touch, and smell, but taste is not emphasized."
-        },
-        {
-            chapter: "Chapter 5: Non-Verbal Communication",
-            question: "Non-verbal clues often convey:",
-            options: ["Less than verbal communication", "About the same as verbal", "More than verbal communication", "Nothing important"],
-            correct: 2,
-            explanation: "Non-verbal clues often convey more meaning than verbal communication."
-        },
+            // Share and debt capital – ordinary vs preference shares
+            {
+                question: "Which statement best distinguishes ordinary shares from preference shares?",
+                options: [
+                    "Ordinary shareholders usually have voting rights but no fixed dividend rate, while preference shareholders have a fixed preferential dividend and priority on winding up.",
+                    "Ordinary shares are only issued to founders, while preference shares are issued only to the public.",
+                    "Ordinary shares cannot be transferred, while preference shares are non‑transferable.",
+                    "Ordinary shareholders have limited liability, while preference shareholders have unlimited liability."
+                ],
+                correct: [0],
+                explanation: "Ordinary shareholders typically enjoy voting rights and variable dividends, whereas preference shareholders have a fixed preferential dividend and priority in capital return."
+            },
 
-        // CHAPTER 6: SOURCES OF INFORMATION
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "The Library of Congress Classification system divides knowledge into how many basic classes?",
-            options: ["15", "21", "26", "30"],
-            correct: 1,
-            explanation: "The Library of Congress system divides all knowledge into 21 basic classes, each identified by a letter."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "In Library of Congress Classification, the letter 'H' represents:",
-            options: ["History", "Health Sciences", "Social Sciences", "Humanities"],
-            correct: 2,
-            explanation: "H represents Social Sciences in the Library of Congress Classification."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Class 'P' in Library of Congress Classification covers:",
-            options: ["Psychology", "Philosophy", "Language and Literature", "Physical Sciences"],
-            correct: 2,
-            explanation: "P represents Language and Literature in the classification system."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Which class covers Technology in the Library of Congress system?",
-            options: ["S", "T", "U", "V"],
-            correct: 1,
-            explanation: "T represents Technology in the Library of Congress Classification."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Class 'N' includes:",
-            options: ["Natural Sciences", "Nursing", "Fine Arts", "Nutrition"],
-            correct: 2,
-            explanation: "N represents Fine Arts, including architecture, sculpture, and painting."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "The Library of Congress Classification was first developed in the:",
-            options: ["Early 18th century", "Mid 19th century", "Late 19th and early 20th centuries", "Mid 20th century"],
-            correct: 2,
-            explanation: "The system was developed in the late 19th and early 20th centuries."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Which is NOT a primary source of information?",
-            options: ["Interviews", "Direct observation", "Textbook summaries", "Original surveys"],
-            correct: 2,
-            explanation: "Textbook summaries are secondary sources; primary sources include direct interviews, observations, and surveys."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Class 'L' in the Library of Congress system represents:",
-            options: ["Law", "Literature", "Education", "Library Science"],
-            correct: 2,
-            explanation: "L represents Education in the Library of Congress Classification."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "Medicine is classified under which letter in the Library of Congress system?",
-            options: ["M", "N", "P", "R"],
-            correct: 3,
-            explanation: "R represents Medicine in the Library of Congress Classification."
-        },
-        {
-            chapter: "Chapter 6: Sources of Information",
-            question: "The classification system differs from Dewey Decimal in that:",
-            options: ["It uses only numbers", "Relationships are shown by indentation, not numbers", "It has fewer categories", "It's used only in America"],
-            correct: 1,
-            explanation: "Library of Congress shows relationships through indentation rather than hierarchical numbers like Dewey Decimal."
-        },
+            // Debt capital – debentures
+            {
+                question: "What is a debenture?",
+                options: [
+                    "An equity instrument giving ownership rights",
+                    "A long‑term written acknowledgement of debt issued by a company",
+                    "A short‑term trade credit from suppliers",
+                    "A document used only for internal company meetings"
+                ],
+                correct: [1],
+                explanation: "A debenture is a long‑term debt instrument through which a company acknowledges borrowing a sum of money under specified terms."
+            },
 
-        // CHAPTER 7: TECHNIQUES IN COMMUNICATION
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Persuasion is defined as:",
-            options: ["Forcing people to agree", "Guiding people toward adoption of ideas by rational means", "Manipulating others", "Threatening consequences"],
-            correct: 1,
-            explanation: "Persuasion guides people toward ideas through rational and symbolic means, not force."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Inductive reasoning involves:",
-            options: ["Starting with general statements", "Moving from particular facts to general conclusions", "Using only logic", "Avoiding examples"],
-            correct: 1,
-            explanation: "Inductive reasoning starts with particular facts and proceeds to general conclusions."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Deductive reasoning begins with:",
-            options: ["Specific examples", "General statements accepted as true", "Personal opinions", "Emotional appeals"],
-            correct: 1,
-            explanation: "Deductive reasoning starts with general statements known to be true and proceeds to specific facts."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Therapeutic listening is primarily practiced by:",
-            options: ["Teachers", "Counselors and good friends", "Managers", "Lawyers"],
-            correct: 1,
-            explanation: "Therapeutic listening is practiced by counselors, psychiatrists, and supportive friends."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Critical listeners:",
-            options: ["Accept everything they hear", "Evaluate if messages are logical and worthwhile", "Focus only on emotion", "Never question speakers"],
-            correct: 1,
-            explanation: "Critical listeners actively evaluate what they hear to decide if it's logical, worthwhile, and valuable."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Emotional appeals in persuasion are based on:",
-            options: ["Only logic", "Physical, psychological, and social needs", "Statistics only", "Expert testimony"],
-            correct: 1,
-            explanation: "Emotional appeals target physical needs, psychological needs, and social needs."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Ethical appeal in persuasion involves:",
-            options: ["Using emotional manipulation", "Encouraging audience to trust the speaker", "Avoiding logic", "Using force"],
-            correct: 1,
-            explanation: "Ethical appeal (ethos) encourages the audience to identify with and trust the speaker."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Active listeners differ from passive listeners in that they:",
-            options: ["Hear better", "Pay attention to the person only", "Guide speakers toward common interest", "Take no notes"],
-            correct: 2,
-            explanation: "Active listeners engage with content and guide conversation, while passive listeners focus on the speaker's appearance."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "Good listeners should:",
-            options: ["Interrupt frequently", "Fake attention when bored", "Concentrate on content not appearance", "Always agree with speaker"],
-            correct: 2,
-            explanation: "Effective listeners concentrate on what is being said rather than the speaker's appearance."
-        },
-        {
-            chapter: "Chapter 7: Techniques in Communication",
-            question: "When paraphrasing a message, you should:",
-            options: ["Copy exactly what was said", "Repeat in your own words", "Change the meaning", "Add your opinions"],
-            correct: 1,
-            explanation: "Paraphrasing means repeating the message in your own words to confirm understanding."
-        }
-    ];
+            // Membership – becoming a member
+            {
+                question: "Which of the following are ways of becoming a member of a company? (Select all that apply)",
+                options: [
+                    "Subscribing to the Memorandum of Association at incorporation",
+                    "Allotment of shares by the company after applying",
+                    "Transfer of shares from an existing member",
+                    "Transmission of shares on death or bankruptcy",
+                    "Appointment as company secretary"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Membership arises by subscription to the memorandum, allotment, transfer, or transmission of shares; appointment as company secretary does not make a person a member."
+            },
 
-    // State
-    let currentQuestion = 0;
-    let selectedAnswer = null;
-    let score = 0;
-    let answeredQuestions = [];
+            // Membership – register of members
+            {
+                question: "Why is the register of members important in company law?",
+                options: [
+                    "It records who is entitled to attend and vote at meetings and receive dividends",
+                    "It sets out the company’s objects and powers",
+                    "It records all debentures issued by the company",
+                    "It replaces the memorandum of association"
+                ],
+                correct: [0],
+                explanation: "The register of members is prima facie evidence of membership and is used to determine voting, dividend rights and notice of meetings."
+            },
 
-    // Initialize
-    function init() {
-        displayQuestion();
-        document.getElementById('restartBtn').addEventListener('click', handleRestart);
-    }
+            // Meetings – types of meetings
+            {
+                question: "Which of the following are types of company meetings? (Select all that apply)",
+                options: [
+                    "Annual General Meeting (AGM)",
+                    "Extraordinary General Meeting (EGM)",
+                    "Class meetings of shareholders",
+                    "Board meetings",
+                    "Audit committee meetings of Parliament"
+                ],
+                correct: [0, 1, 2, 3],
+                multipleAnswers: true,
+                explanation: "Company law recognises AGMs, EGMs, class meetings of particular shareholders and meetings of the board; parliamentary audit meetings are not company meetings."
+            },
 
-    // Display Question
-    function displayQuestion() {
-        const q = questions[currentQuestion];
-        const progress = ((currentQuestion + 1) / questions.length) * 100;
+            // Meetings – resolutions
+            {
+                question: "What is the main difference between an ordinary resolution and a special resolution?",
+                options: [
+                    "An ordinary resolution requires a simple majority, while a special resolution requires a higher majority and specific notice.",
+                    "An ordinary resolution can only be passed by directors, while a special resolution can only be passed by shareholders.",
+                    "Ordinary resolutions must be filed with the registrar, while special resolutions never need to be filed.",
+                    "There is no difference; the terms are interchangeable."
+                ],
+                correct: [0],
+                explanation: "An ordinary resolution requires a simple majority, while a special resolution requires a higher majority and specific notice."
+            },
 
-        document.getElementById('chapterName').textContent = q.chapter;
-        document.getElementById('question').textContent = q.question;
-        document.getElementById('progressBar').style.width = progress + '%';
-        document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
-        document.getElementById('currentScore').textContent = `${score} / ${answeredQuestions.length}`;
-
-        // Clear and create options
-        const optionsContainer = document.getElementById('options');
-        optionsContainer.innerHTML = '';
-
-        q.options.forEach((option, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'option-btn';
-            btn.innerHTML = `<span>${option}</span>`;
-            btn.onclick = () => handleAnswerClick(index);
-            optionsContainer.appendChild(btn);
-        });
-
-        // Hide explanation and next button
-        document.getElementById('explanationContainer').innerHTML = '';
-        document.getElementById('nextBtn').classList.add('hidden');
-        selectedAnswer = null;
-    }
-
-    // Handle Answer Click
-    function handleAnswerClick(index) {
-        if (selectedAnswer !== null) return;
-
-        selectedAnswer = index;
-        const q = questions[currentQuestion];
-        const buttons = document.querySelectorAll('.option-btn');
-
-        // Update buttons
-        buttons.forEach((btn, i) => {
-            btn.disabled = true;
-            if (i === q.correct) {
-                btn.classList.add('correct');
-                btn.innerHTML += `<svg class="icon-check" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
-            } else if (i === selectedAnswer) {
-                btn.classList.add('incorrect');
-                btn.innerHTML += `<svg class="icon-x" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+            {
+                question: "What does it mean when a company is unable to pay its debts?",
+                options: [
+                    "The company is considered insolvent and may face formal insolvency procedures.",
+                    "The company is automatically dissolved without court involvement.",
+                    "The company is prohibited from trading but remains fully solvent.",
+                    "The company’s directors are immediately imprisoned."
+                ],
+                correct: [0],
+                explanation: "A company that is unable to pay its debts is regarded as insolvent and may be subjected to formal insolvency or restructuring procedures."
+            },
+            {
+                question: "Which of the following best describes the cash flow test for insolvency?",
+                options: [
+                    "It assesses whether the company can pay its debts as they fall due.",
+                    "It compares the company’s market share with competitors.",
+                    "It checks whether the company’s share price is above nominal value.",
+                    "It determines if the company has made a profit in the last financial year."
+                ],
+                correct: [0],
+                explanation: "The cash flow test evaluates whether the company can meet its debts when they fall due, indicating its ability to generate sufficient liquidity."
+            },
+            {
+                question: "What is the primary focus of the balance sheet test of insolvency?",
+                options: [
+                    "Whether the company’s liabilities exceed its assets.",
+                    "Whether the company has more than 50 employees.",
+                    "Whether the company has traded for more than one year.",
+                    "Whether the company has paid dividends in the last three years."
+                ],
+                correct: [0],
+                explanation: "The balance sheet test focuses on whether the company’s total liabilities exceed its total assets, indicating over-indebtedness."
+            },
+            {
+                question: "Which party commonly petitions the court for compulsory liquidation of an insolvent company?",
+                options: [
+                    "Creditors or the Registrar General.",
+                    "Only the company’s employees.",
+                    "Only the company’s auditors.",
+                    "Shareholders’ spouses."
+                ],
+                correct: [0],
+                explanation: "Creditors or the Registrar General typically petition the court for a compulsory liquidation when the company cannot pay its debts."
+            },
+            {
+                question: "What is a key legal consequence when a liquidator is appointed over an insolvent company?",
+                options: [
+                    "Control of the company’s assets passes to the liquidator.",
+                    "The directors retain full control over company assets.",
+                    "All creditors automatically lose their claims.",
+                    "The company’s contracts are automatically renewed."
+                ],
+                correct: [0],
+                explanation: "Once a liquidator is appointed, the liquidator assumes custody and control of the company’s assets to realize them for creditors."
+            },
+            {
+                question: "How are legal proceedings against an insolvent company usually affected once liquidation begins?",
+                options: [
+                    "Proceedings are generally stayed unless allowed by the court or liquidator.",
+                    "Proceedings must continue and cannot be stayed.",
+                    "All existing proceedings are permanently dismissed.",
+                    "Only criminal proceedings are stayed."
+                ],
+                correct: [0],
+                explanation: "On liquidation, most enforcement and legal proceedings are stayed and may only continue with permission of the court or liquidator."
+            },
+            {
+                question: "What is the position of secured creditors when a company is insolvent and in liquidation?",
+                options: [
+                    "They may still enforce their security over the secured property.",
+                    "They lose all priority and rank as unsecured creditors.",
+                    "They must waive their security to participate in liquidation.",
+                    "They are paid only after shareholders are paid."
+                ],
+                correct: [0],
+                explanation: "Secured creditors generally retain the right to enforce their security over the secured assets despite the company’s insolvency."
+            },
+            {
+                question: "Which of the following is a common option available to a company facing insolvency?",
+                options: [
+                    "Entering administration or a business rescue procedure.",
+                    "Automatically increasing its share capital.",
+                    "Distributing all remaining profits as dividends.",
+                    "Changing its registered office to another country."
+                ],
+                correct: [0],
+                explanation: "An insolvent company may seek administration or business rescue procedures as an alternative to immediate liquidation."
+            },
+            {
+                question: "Which of the following is another option, besides liquidation, for dealing with an insolvent company’s financial difficulties?",
+                options: [
+                    "Attempting restructuring or a scheme of arrangement with creditors.",
+                    "Issuing new shares without any disclosure.",
+                    "Ignoring creditor claims until they lapse.",
+                    "Suspending all board meetings indefinitely."
+                ],
+                correct: [0],
+                explanation: "A company in financial difficulty can seek to restructure or enter a scheme of arrangement with creditors to reorganize its debts."
+            },
+            {
+                question: "Which of the following is a recognized way of winding up a company?",
+                options: [
+                    "Compulsory winding up by the court.",
+                    "Automatic winding up when profits fall.",
+                    "Winding up by employee vote only.",
+                    "Winding up by auditor’s unilateral decision."
+                ],
+                correct: [0],
+                explanation: "Compulsory winding up occurs when the court orders the company to be wound up, usually on a creditor or official petition."
+            },
+            {
+                question: "On what grounds may a court order compulsory winding up of a company?",
+                options: [
+                    "Inability to pay debts, passing a special resolution, failure to commence business, or just and equitable grounds.",
+                    "Failure to hold a board meeting every week.",
+                    "A drop in share price below nominal value alone.",
+                    "A change in the company’s registered office."
+                ],
+                correct: [0],
+                explanation: "A court may wind up a company for reasons such as inability to pay debts, a special resolution to wind up, failure to start business, or where it is just and equitable."
+            },
+            {
+                question: "Who typically initiates a compulsory winding up process?",
+                options: [
+                    "Creditors or the Registrar General through a petition.",
+                    "Only the company’s customers.",
+                    "The company’s managing director alone by letter.",
+                    "The company’s external auditors without notice."
+                ],
+                correct: [0],
+                explanation: "Compulsory winding up is usually initiated by a petition presented by creditors or the Registrar General."
+            },
+            {
+                question: "What is a key feature of voluntary winding up of a company?",
+                options: [
+                    "It is initiated by shareholders passing a resolution without a court order.",
+                    "It always requires a court petition by creditors.",
+                    "It can only occur if the company is insolvent.",
+                    "It must be ordered by the Registrar General."
+                ],
+                correct: [0],
+                explanation: "In voluntary winding up, shareholders resolve to wind up the company without needing a court order."
+            },
+            {
+                question: "Which statement best describes a members’ voluntary winding up?",
+                options: [
+                    "It is used when the company is solvent and can pay its debts in full.",
+                    "It is used only when creditors force the company to close.",
+                    "It occurs automatically when directors resign.",
+                    "It is only available to companies that have never traded."
+                ],
+                correct: [0],
+                explanation: "A members’ voluntary winding up applies where the company is solvent and can pay its debts in full within a specified period."
+            },
+            {
+                question: "What must directors usually do before a members’ voluntary winding up can proceed?",
+                options: [
+                    "Make a declaration of solvency confirming debts can be paid in full within a specified period.",
+                    "Obtain written consent from every customer.",
+                    "Increase the company’s share capital.",
+                    "Sell all company assets before any resolution."
+                ],
+                correct: [0],
+                explanation: "Directors in a members’ voluntary winding up typically issue a formal declaration that the company is solvent and can pay its debts within the stated time."
+            },
+            {
+                question: "In a members’ voluntary winding up, how are remaining assets dealt with after paying debts?",
+                options: [
+                    "Surplus assets are distributed to members.",
+                    "Surplus assets revert to the state automatically.",
+                    "Surplus assets are given to employees only.",
+                    "Surplus assets are transferred to the company’s auditors."
+                ],
+                correct: [0],
+                explanation: "Once debts are paid in a members’ voluntary winding up, any surplus is distributed among the members."
+            },
+            {
+                question: "Which situation typically leads to a creditors’ voluntary winding up?",
+                options: [
+                    "The company is insolvent and cannot pay its debts in full.",
+                    "The company wants to reduce its share capital.",
+                    "The company plans to merge with another solvent company.",
+                    "The company wishes to change its business name."
+                ],
+                correct: [0],
+                explanation: "A creditors’ voluntary winding up is used when the company is insolvent and cannot fully pay its debts."
+            },
+            {
+                question: "What role do creditors play in a creditors’ voluntary winding up?",
+                options: [
+                    "They play a central role in appointing the liquidator and overseeing the distribution of assets.",
+                    "They have no involvement in selecting the liquidator.",
+                    "They must withdraw all claims before liquidation starts.",
+                    "They are only informed after all assets are distributed."
+                ],
+                correct: [0],
+                explanation: "In a creditors’ voluntary winding up, creditors are heavily involved in appointing the liquidator and supervising how assets are realized and distributed."
+            },
+            {
+                question: "What is the legal position of a company that is unable to pay its debts?",
+                options: [
+                    "The company may be regarded as insolvent under cash-flow and/or balance-sheet tests.",
+                    "The company may be exposed to petitions for winding up by creditors or relevant authorities.",
+                    "The company may become subject to the appointment of a liquidator to collect and realise its assets.",
+                    "Legal proceedings and individual enforcement actions against the company may be stayed once formal insolvency or winding-up begins.",
+                    "Directors’ management powers may be significantly curtailed and they must cooperate with the liquidator or administrator.",
+                    "Secured creditors may still enforce their security over specifically charged assets, subject to the applicable insolvency framework.",
+                    "The company may seek alternatives to immediate liquidation, such as business rescue, administration, or restructuring arrangements with creditors.",
+                    "The company is automatically dissolved the moment it misses a single payment, with no court process required.",
+                    "Creditors permanently lose all rights to enforce their claims as soon as the company is unable to pay its debts.",
+                    "The company is always treated as fully solvent as long as it owns any assets, regardless of its liabilities."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "Inability to pay debts may indicate insolvency, exposing the company to court petitions for winding up, appointment of a liquidator, stays on proceedings, reduced director powers, ongoing rights of secured creditors over secured assets, and possible use of rescue or restructuring mechanisms. The company is not automatically dissolved, and creditors do not lose all rights merely because of non-payment.[web:4][web:7][web:10]"
+            },
+            {
+                question: "Which statements correctly describe the several ways in which a company may be wound up?",
+                options: [
+                    "A company may be wound up compulsorily by a court on specified statutory grounds, such as inability to pay debts or just and equitable reasons.",
+                    "A company may be wound up voluntarily by a resolution of its members without the need for a court order.",
+                    "Voluntary winding up can be a members’ voluntary winding up where the company is solvent and directors declare solvency.",
+                    "Voluntary winding up can be a creditors’ voluntary winding up where the company is insolvent and creditors play a central role.",
+                    "In a compulsory winding up, the court usually appoints a liquidator to take control of the company’s assets and affairs.",
+                    "Grounds for compulsory winding up can include failure to commence business, persistent default in statutory obligations, or public interest considerations, depending on the statute.",
+                    "In both compulsory and voluntary winding up, the liquidator’s function includes realising assets and distributing proceeds according to the statutory order of priority.",
+                    "The only way to wind up a company is by an informal announcement by the managing director without any resolution or court order.",
+                    "Employees alone can validly vote to wind up the company without shareholder or court involvement under company law.",
+                    "Every fall in share price below nominal value automatically results in the company being wound up by operation of law."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "A company can be wound up either compulsorily by a court on statutory grounds, or voluntarily by members, with voluntary winding up divided into members’ voluntary (solvent) and creditors’ voluntary (insolvent) processes; in both, a liquidator is appointed to realise assets and distribute them according to the statutory priority framework.[web:4][web:10]"
+            },
+            {
+                question: "Which statements correctly describe typical effects of a valid share transfer?",
+                options: [
+                    "Legal ownership of the shares passes from the transferor to the transferee once the transfer is properly executed and registered.",
+                    "The transferee becomes a member in respect of the transferred shares and gains associated rights such as voting and dividends.",
+                    "The transferor ceases to be a member in respect of the transferred shares once the transfer is recorded in the register of members.",
+                    "The company’s register of members is updated to reflect the change in ownership.",
+                    "Control of the company can be affected if a significant block of shares is transferred, potentially altering majority or minority positions.",
+                    "The transferee may become subject to obligations attached to the shares, such as unpaid amounts on partly paid shares or shareholder agreements.",
+                    "The transfer may have tax, stamp duty, or regulatory implications for the parties, depending on the applicable law.",
+                    "Every share transfer automatically dissolves the company regardless of the size or nature of the transfer.",
+                    "After transfer, both transferor and transferee permanently enjoy full voting and dividend rights over the same share.",
+                    "All of the company’s contracts automatically terminate upon any share transfer."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "A valid share transfer moves legal ownership to the transferee, confers membership rights on the transferee, removes the transferor in respect of those shares, requires updating of the register, may affect control and impose obligations on the transferee, and can have tax or regulatory consequences; it does not automatically dissolve the company or duplicate rights over the same share.[web:2][web:5][web:8]"
+            },
+            {
+                question: "Which statements correctly describe piercing (or lifting) the corporate veil and its purposes under company law?",
+                options: [
+                    "Piercing the corporate veil allows courts, in exceptional cases, to look beyond the company’s separate legal personality.",
+                    "It may be used where a company is used as a façade, sham, or device to conceal fraud or evade existing legal obligations.",
+                    "A purpose of piercing the veil is to hold controllers, such as shareholders or directors, personally liable where they misuse the company form.",
+                    "It serves to prevent abuse of limited liability and ensure that the corporate structure is not used to perpetrate injustice.",
+                    "Courts generally treat piercing the veil as an exception rather than the normal approach in company law.",
+                    "The doctrine can be relevant where associated companies are structured solely to circumvent statutory duties or contractual obligations.",
+                    "In some jurisdictions, veil-piercing may be supported by specific statutory provisions in addition to general judicial principles.",
+                    "Piercing the veil means that separate legal personality is always ignored in every case involving company debts.",
+                    "Mere commercial failure or poor business judgment, without any abuse or wrongdoing, automatically justifies piercing the veil.",
+                    "The doctrine allows creditors to ignore company procedures entirely and claim against any shareholder they choose in all circumstances."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "Piercing the corporate veil is an exceptional doctrine allowing courts to disregard separate personality where the company is used as a façade for fraud, evasion, or other abuses, so that controllers may be held personally liable; it is not applied routinely and does not follow purely from commercial failure without misuse of the corporate form.[web:7][web:10]"
+            },
+            {
+                question: "Which statements correctly state typical purposes of a liquidator’s reports?",
+                options: [
+                    "To provide creditors and members with information on the company’s assets, liabilities, and overall financial position.",
+                    "To explain, so far as possible, the causes of the company’s failure or insolvency.",
+                    "To account for the steps taken to collect, preserve, and realise the company’s assets.",
+                    "To report how proceeds are distributed among creditors and, if any surplus exists, among members.",
+                    "To inform the court and relevant regulators about any suspected misconduct by directors or officers and any matters requiring further action.",
+                    "To support possible claims to set aside voidable transactions, such as preferences or transactions at undervalue, where appropriate.",
+                    "To promote transparency and confidence in the winding-up process by maintaining a clear record of decisions and outcomes.",
+                    "To keep all information about the winding up strictly secret from creditors and regulators.",
+                    "To serve mainly as marketing material to attract new investors to the insolvent company.",
+                    "To justify bonuses to directors without explaining how assets were realised or distributed."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "Liquidator’s reports aim to inform creditors, members, courts, and regulators about the company’s financial position, causes of failure, actions taken to realise assets, distributions made, potential misconduct, and possible avoidance actions, thereby ensuring transparency and oversight in the winding-up process.[web:9][web:10]"
+            },
+            {
+                question: "Global Tech Ltd., a foreign company, began operations in Rwanda without obtaining the required registration certificate. Which statements correctly reflect likely implications for Global Tech Ltd.?",
+                options: [
+                    "The company may be in breach of Rwandan law governing the establishment of foreign companies and registration requirements.",
+                    "Regulatory authorities may impose sanctions such as fines, directives to cease operations, or other penalties for non-compliance.",
+                    "The company may face restrictions on its ability to bring legal proceedings in Rwandan courts until it complies with registration obligations.",
+                    "Contracts concluded while unregistered may be harder for the company to enforce and may require subsequent regularisation, depending on the statute.",
+                    "Responsible officers or representatives may incur personal liability or offences where the law imposes duties on them to ensure registration.",
+                    "The company may be required to regularise its status by registering, filing prescribed documents, and paying applicable fees before continuing business lawfully.",
+                    "Non-compliance may affect the company’s reputation and its ability to obtain licences or approvals from Rwandan authorities.",
+                    "There are no legal consequences at all, and the company enjoys all rights and protections exactly as if it were fully registered.",
+                    "The company automatically becomes a domestic public company in Rwanda without taking any further steps.",
+                    "Only shareholders are personally punished, while the company itself faces no regulatory or legal implications."
+                ],
+                correct: [0, 1, 2, 3, 4, 5, 6],
+                explanation: "A foreign company operating in Rwanda without the required registration may breach company and investment laws, risk regulatory sanctions, face limits on enforcing rights or accessing courts, expose responsible officers to liability, and be required to regularise its status, with resulting reputational and licensing consequences; it does not automatically gain full rights or domestic status without compliance.[web:3][web:6][web:9]"
             }
-        });
 
-        // Update score
-        if (selectedAnswer === q.correct) {
-            score++;
-        }
 
-        // Show explanation
-        const expContainer = document.getElementById('explanationContainer');
-        expContainer.className = `explanation ${selectedAnswer === q.correct ? 'correct' : 'info'}`;
-        expContainer.innerHTML = `
-                <p class="explanation-title">${selectedAnswer === q.correct ? '✓ Correct!' : 'ℹ Explanation:'}</p>
-                <p class="explanation-text">${q.explanation}</p>
+        ];
+
+        const essayQuestions = [
+            {
+                question: "1. Explain the legal position relating to a company which is unable to pay its debts.",
+                answer: `
+                    <p><strong>Legal Position of an Insolvent Company:</strong></p>
+                    <p>When a company is unable to pay its debts, it is considered insolvent. The legal position includes tests for insolvency, consequences, and available procedures.</p>
+
+                    <p><strong>Tests for Insolvency:</strong></p>
+                    <ol>
+                        <li><strong>Cash Flow Test (Commercial Insolvency):</strong> The company is unable to pay debts when they fall due, indicating liquidity problems.</li>
+                        <li><strong>Balance Sheet Test:</strong> The company's liabilities exceed its assets, indicating over‑indebtedness.</li>
+                    </ol>
+
+                    <p><strong>Legal Consequences:</strong></p>
+                    <ul>
+                        <li>Creditors or the Registrar General may petition for compulsory liquidation.</li>
+                        <li>The court may appoint a liquidator to take custody and control of the company's assets.</li>
+                        <li>Proceedings and enforcement actions are generally stayed unless permitted by the court or liquidator.</li>
+                        <li>Directors’ powers largely cease and they must cooperate with the liquidator.</li>
+                        <li>Secured creditors may still enforce security over secured property.</li>
+                    </ul>
+
+                    <p><strong>Available Options:</strong></p>
+                    <ul>
+                        <li>Enter administration or business rescue procedures.</li>
+                        <li>Attempt restructuring or a scheme of arrangement with creditors.</li>
+                        <li>Proceed with voluntary or compulsory liquidation.</li>
+                    </ul>
+                `
+            },
+            {
+                question: "2. Discuss the several ways of winding up a company.",
+                answer: `
+                    <p><strong>Ways of Winding Up a Company:</strong></p>
+
+                    <p><strong>1. Compulsory Winding Up (By Court):</strong></p>
+                    <ul>
+                        <li>Initiated by a petition, typically by creditors or the Registrar General.</li>
+                        <li>Grounds include inability to pay debts, special resolution, failure to commence business, or just and equitable reasons.</li>
+                        <li>The court appoints a liquidator to collect and realize assets and distribute to creditors.</li>
+                    </ul>
+
+                    <p><strong>2. Voluntary Winding Up:</strong></p>
+                    <ul>
+                        <li>Initiated by shareholders passing a resolution without court order.</li>
+                        <li>Can be members’ voluntary (company solvent) or creditors’ voluntary (company insolvent).</li>
+                    </ul>
+
+                    <p><strong>Members’ Voluntary Winding Up:</strong></p>
+                    <ul>
+                        <li>Directors declare solvency and confirm debts can be paid in full within a specified period.</li>
+                        <li>Assets are realized, debts paid, surplus distributed to members.</li>
+                    </ul>
+
+                    <p><strong>Creditors’ Voluntary Winding Up:</strong></p>
+                    <ul>
+                        <li>Used where the company is insolvent and cannot pay its debts in full.</li>
+                        <li>Creditors play a central role in appointing the liquidator and overseeing distribution.</li>
+                    </ul>
+                `
+            }
+        ];
+
+        const quizContent = document.getElementById('quizContent');
+        const essaySection = document.getElementById('essaySection');
+        const progressFill = document.getElementById('progressFill');
+        const questionCounter = document.getElementById('questionCounter');
+        const scoreCounter = document.getElementById('scoreCounter');
+        const submitBtn = document.getElementById('submitBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const resultsDiv = document.getElementById('results');
+        const scoreCircle = document.getElementById('scoreCircle');
+        const correctCountSpan = document.getElementById('correctCount');
+        const totalQuestionsSpan = document.getElementById('totalQuestions');
+        const attemptedCountSpan = document.getElementById('attemptedCount');
+
+        let userAnswers = {};
+        let score = 0;
+
+        function renderQuiz() {
+            quizContent.innerHTML = '';
+            quizData.forEach((q, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+
+                const header = document.createElement('div');
+                header.className = 'question-header';
+
+                const number = document.createElement('div');
+                number.className = 'question-number';
+                number.textContent = index + 1;
+
+                const textWrapper = document.createElement('div');
+                const qText = document.createElement('div');
+                qText.className = 'question-text';
+                qText.textContent = q.question;
+
+                if (q.multipleAnswers) {
+                    const note = document.createElement('div');
+                    note.className = 'question-note';
+                    note.textContent = 'Select all that apply.';
+                    textWrapper.appendChild(qText);
+                    textWrapper.appendChild(note);
+                } else {
+                    textWrapper.appendChild(qText);
+                }
+
+                header.appendChild(number);
+                header.appendChild(textWrapper);
+
+                const optionsDiv = document.createElement('div');
+                optionsDiv.className = 'options';
+
+                q.options.forEach((opt, optIndex) => {
+                    const option = document.createElement('label');
+                    option.className = 'option';
+
+                    const input = document.createElement('input');
+                    input.type = 'checkbox';
+                    input.name = 'question-' + index;
+                    input.value = optIndex;
+
+                    option.appendChild(input);
+                    option.appendChild(document.createTextNode(opt));
+
+                    option.addEventListener('click', (e) => {
+                        if (e.target.tagName !== 'INPUT') {
+                            input.checked = !input.checked;
+                        }
+                        handleSelect(index, optIndex, q.multipleAnswers);
+                    });
+
+                    optionsDiv.appendChild(option);
+                });
+
+                const explanationDiv = document.createElement('div');
+                explanationDiv.className = 'explanation';
+                explanationDiv.id = 'explanation-' + index;
+                explanationDiv.innerHTML = `
+                <h4>Explanation</h4>
+                <p>${q.explanation}</p>
             `;
 
-        // Show next button
-        const nextBtn = document.getElementById('nextBtn');
-        nextBtn.classList.remove('hidden');
-        if (currentQuestion < questions.length - 1) {
-            nextBtn.innerHTML = `Next Question <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>`;
-        } else {
-            nextBtn.textContent = 'See Results';
+                card.appendChild(header);
+                card.appendChild(optionsDiv);
+                card.appendChild(explanationDiv);
+
+                quizContent.appendChild(card);
+            });
+
+            questionCounter.textContent = `Question 0 of ${quizData.length}`;
+            scoreCounter.textContent = `Score: 0/${quizData.length}`;
+            progressFill.style.width = '0%';
         }
-        nextBtn.onclick = handleNext;
-    }
 
-    // Handle Next
-    function handleNext() {
-        answeredQuestions.push(currentQuestion);
+        function handleSelect(qIndex, optIndex, multiple) {
+            if (!userAnswers[qIndex]) {
+                userAnswers[qIndex] = new Set();
+            }
 
-        if (currentQuestion < questions.length - 1) {
-            currentQuestion++;
-            displayQuestion();
-        } else {
-            showResults();
+            if (!multiple) {
+                userAnswers[qIndex].clear();
+            }
+
+            const set = userAnswers[qIndex];
+            if (set.has(optIndex)) {
+                set.delete(optIndex);
+            } else {
+                set.add(optIndex);
+            }
+
+            updateUISelections(qIndex);
+            updateProgress();
         }
-    }
 
-    // Show Results
-    function showResults() {
-        const percentage = ((score / questions.length) * 100).toFixed(1);
-        const passed = percentage >= 70;
+        function updateUISelections(qIndex) {
+            const options = document.getElementsByName('question-' + qIndex);
+            options.forEach((input) => {
+                const label = input.parentElement;
+                const idx = parseInt(input.value, 10);
+                if (userAnswers[qIndex] && userAnswers[qIndex].has(idx)) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        }
 
-        document.getElementById('quizScreen').classList.add('hidden');
-        document.getElementById('resultScreen').classList.remove('hidden');
+        function updateProgress() {
+            const totalQuestions = quizData.length;
+            let attempted = 0;
+            Object.keys(userAnswers).forEach((key) => {
+                if (userAnswers[key] && userAnswers[key].size > 0) {
+                    attempted++;
+                }
+            });
+            const progressPercent = (attempted / totalQuestions) * 100;
+            progressFill.style.width = progressPercent + '%';
+            questionCounter.textContent = `Attempted ${attempted} of ${totalQuestions}`;
+        }
 
-        const iconContainer = document.getElementById('resultIcon');
-        iconContainer.className = `result-icon ${passed ? 'passed' : 'failed'}`;
-        iconContainer.innerHTML = passed
-            ? '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>'
-            : '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        function gradeQuiz() {
+            score = 0;
+            const totalQuestions = quizData.length;
+            let attempted = 0;
 
-        document.getElementById('resultTitle').textContent = passed ? 'Congratulations!' : 'Keep Learning!';
-        document.getElementById('resultScore').innerHTML = `You scored <span class="highlight">${score}</span> out of <span style="font-weight: bold;">${questions.length}</span>`;
-        document.getElementById('resultPercentage').textContent = `${percentage}%`;
-        document.getElementById('resultMessage').textContent = passed
-            ? 'Excellent work! You have a strong understanding of communication skills.'
-            : 'Review the material and try again to improve your score.';
-    }
+            quizData.forEach((q, index) => {
+                const correctSet = new Set(q.correct);
+                const userSet = userAnswers[index] || new Set();
+                if (userSet.size > 0) {
+                    attempted++;
+                }
 
-    // Handle Restart
-    function handleRestart() {
-        currentQuestion = 0;
-        selectedAnswer = null;
-        score = 0;
-        answeredQuestions = [];
+                const options = document.getElementsByName('question-' + index);
+                options.forEach((input) => {
+                    const label = input.parentElement;
+                    label.classList.remove('correct', 'incorrect');
+                });
 
-        document.getElementById('resultScreen').classList.add('hidden');
-        document.getElementById('quizScreen').classList.remove('hidden');
+                let isCorrect = true;
+                if (userSet.size !== correctSet.size) {
+                    isCorrect = false;
+                } else {
+                    for (let val of userSet) {
+                        if (!correctSet.has(val)) {
+                            isCorrect = false;
+                            break;
+                        }
+                    }
+                }
 
-        displayQuestion();
-    }
+                const optionsInputs = document.getElementsByName('question-' + index);
+                optionsInputs.forEach((input) => {
+                    const label = input.parentElement;
+                    const idx = parseInt(input.value, 10);
+                    if (correctSet.has(idx)) {
+                        label.classList.add('correct');
+                    } else if (userSet.has(idx) && !correctSet.has(idx)) {
+                        label.classList.add('incorrect');
+                    }
+                });
 
-    // Start quiz
-    window.addEventListener('DOMContentLoaded', init);
-</script>
+                if (isCorrect && userSet.size > 0) {
+                    score++;
+                }
+
+                const explanationDiv = document.getElementById('explanation-' + index);
+                explanationDiv.classList.add('show');
+            });
+
+            const percentage = Math.round((score / totalQuestions) * 100);
+            scoreCircle.textContent = percentage + '%';
+            correctCountSpan.textContent = score;
+            totalQuestionsSpan.textContent = totalQuestions;
+            attemptedCountSpan.textContent = attempted;
+            scoreCounter.textContent = `Score: ${score}/${totalQuestions}`;
+            resultsDiv.style.display = 'block';
+            essaySection.style.display = 'block';
+
+            renderEssays();
+        }
+
+        function renderEssays() {
+            essaySection.innerHTML = '<h2>📝 Written Answer Questions</h2>';
+            essayQuestions.forEach((q) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'essay-question';
+
+                const title = document.createElement('h3');
+                title.textContent = q.question;
+
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'essay-answer';
+                answerDiv.innerHTML = `<h4>Model answer (for revision):</h4>${q.answer}`;
+
+                wrapper.appendChild(title);
+                wrapper.appendChild(answerDiv);
+                essaySection.appendChild(wrapper);
+            });
+        }
+
+        function resetQuiz() {
+            userAnswers = {};
+            score = 0;
+            resultsDiv.style.display = 'none';
+            essaySection.style.display = 'none';
+            renderQuiz();
+        }
+
+        submitBtn.addEventListener('click', gradeQuiz);
+        resetBtn.addEventListener('click', resetQuiz);
+
+        // initial render
+        renderQuiz();
+    </script>
 </body>
+
 </html>
